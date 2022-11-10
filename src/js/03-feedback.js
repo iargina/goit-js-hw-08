@@ -3,9 +3,6 @@ const user = {};
 const throttle = require('lodash.throttle');
 
 
-function refresh() {
-  localStorage.setItem('feedback-form-state', JSON.stringify(user));
-}
 
 function userData(event) {
   user[event.target.name] = event.target.value;
