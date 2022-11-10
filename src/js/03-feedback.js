@@ -15,8 +15,6 @@ function refresh() {
   if (memory) {
     memory = JSON.parse(memory);
     Object.entries(memory).forEach(([name, value]) => {
-      console.log(name);
-      console.log(value);
       form.elements[name].value = value;
     });
   }
