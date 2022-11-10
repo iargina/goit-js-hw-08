@@ -2,11 +2,15 @@ const form = document.querySelector(`.feedback-form`);
 const user = {};
 const throttle = require('lodash.throttle');
 
-
-
 function userData(event) {
-  user[event.target.name] = event.target.value;
-  localStorage.setItem('feedback-form-state', JSON.stringify(user));
+  if (localStorage.getItem('feedback-form-state')) {
+    const user = JSON.parse(localStorage.getItem('feedback-form-state'));
+    user[event.target.name] = event.target.value;
+    localStorage.setItem('feedback-form-state', JSON.stringify(user));
+  } else {
+    user[event.target.name] = event.target.value;
+    localStorage.setItem('feedback-form-state', JSON.stringify(user));
+  }
 }
 
 function refresh() {
@@ -30,4 +34,4 @@ function onSubmit(e) {
 form.addEventListener(`input`, throttle(userData, 500));
 form.addEventListener(`submit`, onSubmit);
 
-refresh()
+refresh();
